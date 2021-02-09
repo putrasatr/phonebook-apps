@@ -5,9 +5,6 @@ console.log("add.js",contactType)
 exports.add = {
     type: contactType,
     args: {
-        _id: {
-            type: new GraphQLNonNull(GraphQLID),
-        },
         id: {
             type: new GraphQLNonNull(GraphQLID),
         },

@@ -1,47 +1,69 @@
-const phonebooks = (state = [], action) => {
+const phonebooks = (state = { items: [], count: 0 }, action) => {
     switch (action.type) {
-        
         case 'ADD_CONTACT':
-            return [
+            return {
                 ...state,
-                {
-                    id: action.id,
-                    name: action.name,
-                    phone: action.phone,
-                }
-            ]
+                items: [
+                    {
+                        id: action.id,
+                        name: action.name,
+                        phone: action.phone
+                    },
+                    ...state.items
+                ]
+            }
 
         case 'ADD_CONTACT_SUCCESS':
-            return state.map(item => {
+            const newData = state.items.map(item => {
                 item.sent = true
                 return item
             });
 
+            return { ...state, items: newData }
+
         case 'ADD_CONTACT_FAILURE':
-            return state.map((item) => {
+            const addDataFail = state.items.map((item) => {
                 if (item.id === action.id) {
                     item.sent = false
                 }
                 return item
             });
+            return { ...state, items: addDataFail }
 
         case 'LOAD_CONTACT_SUCCESS':
-            return action.data.data.map((item) => {
+            const items = action.items.map((item) => {
                 item.sent = true;
-                item.isBtnSave = false;
                 return item
             })
+            return { items, count: action.count }
 
         case 'LOAD_CONTACT_FAILURE':
             return state;
 
+        case 'UPDATE_CONTACT':
+            const dataUpdate = state.items.map(item => {
+                if (item.id === action.id) {
+                    return (
+                        {
+                            id: action.id,
+                            name: action.name,
+                            phone: action.phone,
+                            sent: true
+                        }
+                    )
+                }
+                return item
+            })
+            return { ...state, items: dataUpdate }
+
         case 'DELETE_CONTACT':
-            return state.filter(item => item.id !== action.id)
+            const dataDelete = state.items.filter(item => item.id !== action.id)
+            return { ...state, items: dataDelete }
 
-        case 'DELETE_CONTACT_SUCCESS':
-            return state
+        case 'DElETE_CONTACT_SUCCESS':
+            return state;
 
-        case 'DELETE_CONTACT_FAILURE':
+        case 'DElETE_CONTACT_FAILURE':
             return state;
 
         default:
@@ -49,6 +71,4 @@ const phonebooks = (state = [], action) => {
     }
 }
 
-export default phonebooks
-
-
+export default phonebooks;

@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-// import { updateData, deleteData, resendData } from '../../actions/datas';
-// import { connect } from 'react-redux';
+import { updateContact, deleteContact, resendContact } from '../actions/phonebook';
+import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 import '../App.css'
 
-export default class PhoneBookItem extends Component {
+class PhoneBookItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
             isEdit: false,
-            name:'Putra',
-            phone:'08986925367'
+            name:'',
+            phone:'',
+            no:this.props.no
 
         }
         this.editBtnClicked = this.editBtnClicked.bind(this)
@@ -37,7 +38,7 @@ export default class PhoneBookItem extends Component {
         });
     }
     handleUpdate(event) {
-        this.props.updateData(this.props._id,this.props.id, this.state.name, this.state.phone)
+        this.props.updateContact(this.props.id, this.state.name, this.state.phone)
         this.setState({
             isEdit: false
 
@@ -45,7 +46,7 @@ export default class PhoneBookItem extends Component {
     }
 
     handleResend() {
-        this.props.resendData(this.props.id, this.state.name, this.state.phone)
+        this.props.resendContact(this.props.id, this.state.name, this.state.phone)
     }
 
     handleDelete() {
@@ -59,7 +60,7 @@ export default class PhoneBookItem extends Component {
             confirmButtonText: 'Yes, I\'m sure!'
         }).then((result) => {
             if (result.isConfirmed) {
-                this.props.deleteData(this.props.id)
+                this.props.deleteContact(this.props.id)
                 Swal.fire(
                     'Deleted!',
                     'Your file has been deleted.',
@@ -90,16 +91,27 @@ export default class PhoneBookItem extends Component {
         } else {
 
             return (
-                <tr className={!this.props.sent ? "" : "bg-danger text-white"}>
-                    <th scope="row">1</th>
-                    <td scope="col-md-4">{this.state.name}</td>
-                    <td>{this.state.phone}</td>
+                <tr className={this.props.sent ? "" : "bg-danger text-white"}>
+                    <th scope="row">{this.props.no}</th>
+                    <td scope="col-md-4">{this.props.name}</td>
+                    <td>{this.props.phone}</td>
                     <td>
-                        <button onClick={this.editBtnClicked} className={!this.props.sent ? "btn btn-success mr-2" : "d-none"}><i className="fa fa-edit"></i> update </button>
-                        <button onClick={!this.props.sent ? this.handleDelete : this.handleResend} className={!this.props.sent ? 'btn btn-danger' : 'btn btn-warning text-white'}><i className={!this.props.sent ? "fa fa-trash" : "fa fa-refresh"}></i> {!this.props.sent ? 'delete' : 'resend'}</button>
+                        <button onClick={this.editBtnClicked} className={this.props.sent ? "btn btn-success mr-2" : "d-none"}><i className="fa fa-edit"></i> update </button>
+                        <button onClick={this.props.sent ? this.handleDelete : this.handleResend} className={this.props.sent ? 'btn btn-danger' : 'btn btn-warning text-white'}><i className={this.props.sent ? "fa fa-trash" : "fa fa-refresh"}></i> {this.props.sent ? 'delete' : 'resend'}</button>
                     </td>
                 </tr>
             )
         }
     }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    updateContact: (id, name, phone) => dispatch(updateContact(id, name, phone)),
+    deleteContact: (id) => dispatch(deleteContact(id)),
+    resendContact: (id, name, phone) => dispatch(resendContact(id, name, phone)),
+})
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(PhoneBookItem)

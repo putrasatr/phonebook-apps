@@ -16,12 +16,12 @@ router.get('/phonebooks', function (req, res) {
 });
 
 router.post('/phonebooks', function (req, res, next) {
-    var { ID, name, phone } = req.body;
+    var { name, phone } = req.body;
     let _id = Date.now();
 
     const referencePath = '/PhoneBook/' + _id + '/';
     const userReference = firebase.database().ref(referencePath);
-    userReference.set({ ID: ID, Name: name, Phone: phone }, function (error) {
+    userReference.set({ Name: name, Phone: phone }, function (error) {
         if (error) {
             res.send("Data could not be saved." + error);
         } else {

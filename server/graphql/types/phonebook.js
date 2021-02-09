@@ -6,7 +6,7 @@ const {
   } = require('graphql');
   
   
-  // User Type
+  // contact Type
   const contactType = new GraphQLObjectType({
     name: 'contact',
     fields: {

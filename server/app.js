@@ -26,13 +26,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors())
 
 app.use('/', indexRouter);
-app.use('/api', ApiRouter);
+app.use('/api',ApiRouter);
 
-const userSchema = require('./graphql').userSchema;
-app.use('./graphql', cors(), graphqlHTTP({
-    schema: userSchema,
+const phonebookSchema = require('./graphql').phonebookSchema;
+app.use('/graphql', cors(), graphqlHTTP({
+    schema: phonebookSchema,
     rootValue: global,
     graphiql: true
 }))

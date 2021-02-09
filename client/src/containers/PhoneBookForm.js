@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { addData } from '../../actions/datas'
+import { addContact } from '../actions/phonebook'
 
-export default class PhoneBookForm extends Component {
+class PhoneBookForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -31,7 +31,7 @@ export default class PhoneBookForm extends Component {
 
     handleClickSave(event) {
         if (this.state.name && this.state.phone) {
-            this.props.addData(this.state.name, this.state.phone)
+            this.props.addContact(this.state.name, this.state.phone)
             this.setState({ name: '', phone: '' })
         }
         event.preventDefault();
@@ -43,7 +43,7 @@ export default class PhoneBookForm extends Component {
 
                 <div>
                     <div className="card">
-                        <div class="card-header">Adding Form</div>
+                        <div className="card-header">Adding Form</div>
                         <div className="card-body">
                             <form onSubmit={this.handleClickSave}>
                                 <div className="row">
@@ -91,11 +91,11 @@ export default class PhoneBookForm extends Component {
     }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//     addData: (letter, frequency) => dispatch(addData(letter, frequency)),
-// })
+const mapDispatchToProps = dispatch => ({
+    addContact: (name, phone) => dispatch(addContact(name, phone)),
+})
 
-// export default connect(
-//     null,
-//     mapDispatchToProps
-// )(DataForm)
+export default connect(
+    null,
+    mapDispatchToProps
+)(PhoneBookForm)

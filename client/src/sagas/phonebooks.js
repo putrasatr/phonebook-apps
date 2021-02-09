@@ -32,9 +32,8 @@ const read = async (params) => {
 
 const add = async (params) => {
     const addQuery = gql`
-        mutation addContact($_id: ID!, $id: ID!, $name: String!, $phone: String!) {
-            addContact(_id: $_id, id: $id, name: $name, phone: $phone) {
-                _id
+        mutation addContact($_id: ID!, $name: String!, $phone: String!) {
+            addContact(id: $_id, name: $name, phone: $phone) {
                 id
                 name
                 phone
@@ -43,8 +42,7 @@ const add = async (params) => {
     return await client.mutate({
         mutation: addQuery,
         variables: {
-            _id: params.id,
-            id: params.id,
+            _id: params._id,
             name: params.name,
             phone: params.phone
         }
@@ -57,8 +55,8 @@ const add = async (params) => {
 
 const edit = async (params) => {
     const updateQuery = gql`
-        mutation updateContact($_id: ID!, $name: String!, $phone: String!) {
-            updateContact(_id: $_id, name: $name, phone: $phone) {
+        mutation updateContact($_id:ID! ,$name: String!, $phone: String!) {
+            updateContact(_id:$_id, name: $name, phone: $phone) {
                 _id
                 name
                 phone
@@ -102,6 +100,7 @@ function* loadContact(payload) {
     const offset = curpage ? ((curpage - 1) * limit + 1) : 1;
     try {
         const data = yield call(read, { offset, limit, searchName, searchPhone });
+       
         yield put(actions.loadContactSuccess(data));
     } catch (error) {
         console.log(error);
@@ -111,14 +110,14 @@ function* loadContact(payload) {
 
 function* postContact(payload) {
     const { name, phone } = payload;
-    const id = Date.now();
+    const _id = Date.now();
     try {
-        const data = yield call(add, { id, name, phone })
-        yield put(actions.addContactView(id, name, phone));
+        const data = yield call(add, { _id, name, phone })
+        yield put(actions.addContactView(_id, name, phone));
         yield put(actions.addContactSuccess(data))
     } catch (error) {
-        yield put(actions.addContactView(id, name, phone));
-        yield put(actions.addContactFailure(id))
+        yield put(actions.addContactView(_id, name, phone));
+        yield put(actions.addContactFailure(_id))
     }
 }
 
