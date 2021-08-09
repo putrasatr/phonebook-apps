@@ -1,7 +1,6 @@
 const firebase = require('firebase')
 
 const getContacts = (offset, limit, searchName, searchPhone) => {
-    console.log("cKING:",offset, limit, searchName, searchPhone)
     const userReference = firebase.database().ref("/PhoneBook/");
     return (new Promise((resolve, reject) => {
         userReference.on("value", function (snapshot) {
