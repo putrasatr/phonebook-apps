@@ -6,6 +6,6 @@ const PaginatedListType = (ItemType) => new GraphQLObjectType({
     count: { type: GraphQLInt },
     items: { type: new GraphQLList(ItemType) }
   }
-},console.log("POPOP",ItemType))
+})
 
 module.exports = PaginatedListType;

@@ -1,7 +1,7 @@
 const { GraphQLNonNull, GraphQLString, GraphQLID } = require('graphql');
 const contactType = require('../types/phonebook');
 const services = require('../../services');
-console.log("add.js",contactType)
+
 exports.add = {
     type: contactType,
     args: {
