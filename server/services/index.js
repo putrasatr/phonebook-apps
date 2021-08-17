@@ -38,12 +38,15 @@ const getContacts = (offset, limit, searchName, searchPhone) => {
 const totalData = (searchName, searchPhone) => {
     const userReference = firebase.database().ref("/PhoneBook/");
     return (new Promise((resolve, reject) => {
-        userReference.on("value", function (snapshot) {
+        userReference.on("value", (snapshot) => {
             const folders = snapshot.val();
             if (folders === null) {
                 resolve([]);
             } else {
-                const data = Object.keys(folders).map(o => Object.assign({ id: o }, folders[o]));
+                const data = Object.keys(folders).map(o =>
+                    Object.assign({ id: o },
+                        folders[o]
+                    ));
 
                 let dataTest = data;
                 if (searchName && searchPhone) {
