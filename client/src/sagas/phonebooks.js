@@ -15,6 +15,7 @@ const read = async (params) => {
                 count
             }
         }`;
+        console.log(phonebooksQuery)
     return await client.query({
         query: phonebooksQuery,
         variables: {
