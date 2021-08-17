@@ -1,25 +1,18 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const cors = require('cors')
 const { graphqlHTTP } = require("express-graphql")
 const firebase = require('firebase')
+const dbConfig = require("./dbConfig")
 
-const config = {
-    apiKey: "AIzaSyAiA0sxZC8NFY7GlsEcNcU9oOXBE0AfGJo",
-    authDomain: "phonebook-1e7df.firebasespp.com",
-    databaseURL: "https://phonebook-1e7df-default-rtdb.firebaseio.com",
-    projectId: "phonebook-1e7df",
-    storageBucket: "phonebook-1e7df.appspot.com",
-    messagingSenderId: "362508178172"
-}
-firebase.initializeApp(config)
+firebase.initializeApp(dbConfig)
 
-var indexRouter = require('./routes/index');
-var ApiRouter = require('./routes/api');
+const indexRouter = require('./routes/index');
+const { phonebookSchema } = require('./graphql');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -28,10 +21,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
-app.use('/', indexRouter);
-app.use('/api',ApiRouter);
 
-const phonebookSchema = require('./graphql').phonebookSchema;
+app.use('/', indexRouter);
+
 app.use('/graphql', cors(), graphqlHTTP({
     schema: phonebookSchema,
     rootValue: global,
