@@ -1,7 +1,6 @@
-var { GraphQLSchema, GraphQLObjectType } = require('graphql');
-var queryType = require('./queries/');
-var mutations = require('./mutations/index');
-const firebase = require("firebase");
+const { GraphQLSchema, GraphQLObjectType } = require('graphql');
+const queryType = require('./queries/');
+const mutations = require('./mutations');
 
 exports.phonebookSchema = new GraphQLSchema({
     query: queryType,
