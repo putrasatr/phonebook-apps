@@ -3,7 +3,7 @@ import client from '../actions/connect';
 import * as actions from '../actions/phonebook';
 import gql from 'graphql-tag';
 
-const read = async (params) => {
+const read = async ({offset,limit,searchName,searchPhone}) => {
     const phonebooksQuery = gql`
         query($offset: Int!, $limit: Int!, $searchName: String!, $searchPhone: String!) {
             phonebooks(pagination: {offset: $offset, limit: $limit, searchName: $searchName, searchPhone: $searchPhone}) {
@@ -15,14 +15,13 @@ const read = async (params) => {
                 count
             }
         }`;
-        console.log(phonebooksQuery)
     return await client.query({
         query: phonebooksQuery,
         variables: {
-            offset: params.offset,
-            limit: params.limit,
-            searchName: params.searchName,
-            searchPhone: params.searchPhone
+            offset,
+            limit,
+            searchName,
+            searchPhone
         }
     })
         .then(response => response.data.phonebooks)

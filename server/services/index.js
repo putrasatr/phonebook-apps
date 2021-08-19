@@ -8,7 +8,7 @@ const getContacts = (offset, limit, searchName, searchPhone) => {
             if (folders === null) {
                 resolve([]);
             } else {
-                const data = Object.keys(folders).map(o => Object.assign({ id: o }, folders[o]));
+                const data = Object.keys(folders).map(o => Object.assign({ _id: o }, folders[o]));
                 let dataTest = data;
                 if (searchName && searchPhone) {
                     dataTest = data.filter(item =>
