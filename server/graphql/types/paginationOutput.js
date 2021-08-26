@@ -1,4 +1,4 @@
-const {GraphQLObjectType, GraphQLInt, GraphQLList}  = require('graphql');
+const { GraphQLObjectType, GraphQLInt, GraphQLList } = require('graphql');
 
 const PaginatedListType = (ItemType) => new GraphQLObjectType({
   name: 'Paginated' + ItemType,
