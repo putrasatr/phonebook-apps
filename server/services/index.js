@@ -23,7 +23,7 @@ const getContacts = (offset, limit, searchName, searchPhone) => {
           } else if (searchName) {
             dataTest = data.filter((item) =>
               item.name.toLowerCase().includes(searchName.toLowerCase())
-            );
+);
           } else if (searchPhone) {
             dataTest = data.filter((item) => item.phone.includes(searchPhone));
           }

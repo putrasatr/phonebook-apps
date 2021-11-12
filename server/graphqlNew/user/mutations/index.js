@@ -1,6 +1,6 @@
 const { GraphQLNonNull, GraphQLString, GraphQLID } = require("graphql");
 const userType = require("../type");
-const services = require("../../../services");
+const services = require("../../../services/user");
 
 const registerType = {
   type: userType,
@@ -14,12 +14,12 @@ const registerType = {
     password: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    phone: {
+    phone_number  : {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
   resolve(_, params) {
-    return {};
+    return services.createUser(params);
   },
 };
 
