@@ -1,33 +1,37 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors')
-const { graphqlHTTP } = require("express-graphql")
-const firebase = require('firebase')
-const dbConfig = require("./dbConfig")
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const cors = require("cors");
+const { graphqlHTTP } = require("express-graphql");
+const firebase = require("firebase");
+const dbConfig = require("./dbConfig");
 
-firebase.initializeApp(dbConfig)
+firebase.initializeApp(dbConfig);
 
-const indexRouter = require('./routes/index');
-const { phonebookSchema } = require('./graphql');
+const indexRouter = require("./routes/index");
+const { phonebookSchema } = require("./graphql");
+const { appSchema } = require("./graphqlNew");
 
 const app = express();
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors())
+app.use(express.static(path.join(__dirname, "public")));
+app.use(cors());
 
+app.use("/", indexRouter);
 
-app.use('/', indexRouter);
-
-app.use('/graphql', cors(), graphqlHTTP({
-    schema: phonebookSchema,
+app.use(
+  "/graphql",
+  cors(),
+  graphqlHTTP({
+    schema: appSchema,
     rootValue: global,
-    graphiql: true
-}))
+    graphiql: true,
+  })
+);
 
 module.exports = app;
