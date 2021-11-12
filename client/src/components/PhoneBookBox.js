@@ -3,9 +3,6 @@ import PhoneBookList from '../containers/PhoneBookList'
 import PhoneBookForm from '../containers/PhoneBookForm'
 
 export default class PhoneBookBox extends Component {
-    constructor(props) {
-        super(props)
-    }
     render() {
         return (
             <div className="container d-flex flex-column">
