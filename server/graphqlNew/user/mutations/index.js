@@ -40,7 +40,11 @@ const loginType = {
     },
   },
   resolve(_, params) {
-    return {};
+    return {
+      id: 1,
+      email: params.email,
+      password: params.password,
+    };
   },
 };
 
