@@ -14,7 +14,7 @@ const registerType = {
     password: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    phone_number  : {
+    phone_number: {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
@@ -40,11 +40,7 @@ const loginType = {
     },
   },
   resolve(_, params) {
-    return {
-      id: 1,
-      email: params.email,
-      password: params.password,
-    };
+    return services.loginUser(params);
   },
 };
 
