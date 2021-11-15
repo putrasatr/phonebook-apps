@@ -1,18 +1,28 @@
 const firebase = require("firebase");
 
+const getRef = (id) => firebase.database().ref(`/User/${id ? id : ""}`);
 const getUser = (id, email, password) => {
-  const userReference = firebase.database().ref(`/User/${id ? id : ""}`);
+  const userReference = getRef(id);
   return new Promise((resolve, reject) => {
     userReference.on("value", (snapshot) => {
       const users = snapshot.val();
-      if (email && users) {
-        const isEmail = !!Object.keys(users).filter(
-          (item) =>
-            users[item].email === email &&
-            (password ? users[item].password === password : true)
-        ).length;
-        resolve(isEmail);
-      } else resolve(false);
+      if (users)
+        if (email) {
+          const result = Object.keys(users).filter(
+            (item) =>
+              users[item].email === email &&
+              (password ? users[item].password === password : true)
+          );
+          resolve([!!result.length, result[0]]);
+        } else {
+          let arrUser = [users];
+          if (!id)
+            arrUser = Object.keys(users).map((item) => ({
+              ...users[item],
+            }));
+          resolve(arrUser);
+        }
+      else resolve([false]);
       userReference.off("value");
     });
   });
@@ -35,11 +45,10 @@ const createUser = (params) => {
     update_date: Date.now(),
     status: true,
   };
-  const referencePath = `/User/${id}/`;
-  const userReference = firebase.database().ref(referencePath);
+  const userReference = getRef(id);
   return new Promise(async (resolve, reject) => {
     try {
-      const checkUser = await getUser(0, email);
+      const [checkUser] = await getUser(0, email);
       if (checkUser) {
         resolve({
           ...body,
@@ -61,9 +70,13 @@ const createUser = (params) => {
 const loginUser = (params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const checkUser = await getUser(0, params.email, params.password);
+      const [checkUser, idUser] = await getUser(
+        null,
+        params.email,
+        params.password
+      );
       if (checkUser) {
-        resolve(params);
+        resolve({ ...params, status: true, id: idUser });
         return;
       }
       resolve({ ...params, error: "User not found", status: false });
@@ -74,8 +87,24 @@ const loginUser = (params) => {
   });
 };
 
+const logoutUser = (id) => {
+  const userReference = getRef(id);
+  return new Promise(async (resolve, reject) => {
+    try {
+      const [user] = await getUser(id);
+      const body = { ...user, token: null, update_date: Date.now() };
+      userReference.set(body, (err) =>
+        err ? reject() : resolve({ ...body, status: true })
+      );
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   loginUser,
   createUser,
   getUser,
+  logoutUser,
 };

@@ -1,9 +1,12 @@
-import PhoneBookBox from './components/PhoneBookBox'
-import './App.css';
+import { BrowserRouter } from "react-router-dom";
+import Router from "./routes";
+import "./App.css";
 
 function App() {
   return (
-    <PhoneBookBox />
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   );
 }
 

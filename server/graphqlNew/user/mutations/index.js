@@ -44,4 +44,16 @@ const loginType = {
   },
 };
 
-module.exports = { loginType, registerType };
+const logoutType = {
+  type: userType,
+  args: {
+    id: {
+      type: GraphQLString,
+    },
+  },
+  resolve(_, { id }) {
+    return services.logoutUser(id);
+  },
+};
+
+module.exports = { loginType, registerType, logoutType };

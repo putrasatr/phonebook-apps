@@ -1,8 +1,9 @@
 const queryType = require("./queries");
-const { loginType, registerType } = require("./mutations");
+const { loginType, registerType, logoutType } = require("./mutations");
 const mutations = {
   loginType,
   registerType,
+  logoutType,
 };
 
 module.exports = {

@@ -1,10 +1,10 @@
 const services = require("../../../services/user");
 const userType = require("../type");
-const { GraphQLObjectType, GraphQLString } = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLList } = require("graphql");
 
 const UserQueryType = {
   users: {
-    type: userType,
+    type: new GraphQLList(userType),
     args: {
       id: {
         type: GraphQLString,
