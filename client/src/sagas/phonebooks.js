@@ -2,6 +2,7 @@ import { all, takeEvery, put, call } from "redux-saga/effects";
 import client from "../actions/connect";
 import * as actions from "../actions/phonebook";
 import gql from "graphql-tag";
+import { loginUser } from "./user";
 
 const read = async ({ offset, limit, searchName, searchPhone }) => {
   const phonebooksQuery = gql`
@@ -114,31 +115,6 @@ const remove = async (params) => {
       throw err;
     });
 };
-const login = async (params) => {
-  const loginQuery = gql`
-    mutation loginType($email: String!, $password: String!) {
-      loginType(email: $email, password: $password) {
-        id
-        email
-        password
-        error
-        status
-      }
-    }
-  `;
-  return await client
-    .mutate({
-      mutation: loginQuery,
-      variables: {
-        email: params.username,
-        password: params.password,
-      },
-    })
-    .then((response) => response.data)
-    .catch((err) => {
-      throw err;
-    });
-};
 function* loadContact(payload) {
   const { curpage, limit, searchName, searchPhone } = payload;
   const offset = curpage ? (curpage - 1) * limit + 1 : 1;
@@ -198,15 +174,6 @@ function* resendContact(payload) {
     yield put(actions.addContactSuccess(data));
   } catch (error) {
     yield put(actions.addContactFailure(id));
-  }
-}
-
-function* loginUser(payload) {
-  try {
-    const user = yield call(login, payload);
-    console.log(user);
-  } catch (error) {
-    yield put(actions.addContactFailure(0));
   }
 }
 

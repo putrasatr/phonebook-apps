@@ -103,8 +103,8 @@ export const resendContact = (id, name, phone) => ({
   phone,
 });
 //end resend message
-export const loginUser = (username, password) => ({
+export const loginUser = (email, password) => ({
   type: "LOGIN_USER",
-  username,
+  email,
   password,
 });

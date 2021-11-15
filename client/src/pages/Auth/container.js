@@ -1,36 +1,27 @@
 import React from "react";
-import { Box, Text, Stack, Image, Input } from "@chakra-ui/react";
+import { Box, Text, Stack, Image } from "@chakra-ui/react";
 import BannerImage from "global/img/backdrop.jpeg";
-import { useDispatch } from "react-redux";
-import { loginUser } from "actions/phonebook";
+import Login from "./Login";
+import Register from "./Register";
 
 const Auth = () => {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const dispatch = useDispatch();
-  const onSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loginUser(username, password));
-  };
   return (
     <Stack flex="1" p="10px">
-      <Box w="80%" h="700px" marginLeft="auto" bg="red" mt="50px">
-        <Image src={BannerImage} alt="" w="100%" />
+      <Box w="80%" h="700px" marginLeft="auto" mr="30px" mt="50px">
+        <Image
+          src={BannerImage}
+          alt=""
+          w="100%"
+          borderRadius="20px"
+          boxShadow="rgb(38, 57, 77) 0px 20px 30px -10px"
+        />
       </Box>
-      <Box position="absolute" top="200px" left="100px" w="300px">
+      <Box position="absolute" top="100px" left="100px" w="500px">
         <Text fontSize="6pc" color="red">
           Explore yourself
         </Text>
+        <Register />
       </Box>
-      <form onSubmit={onSubmit}>
-        <Input onChange={(e) => setUsername(e.target.value)} value={username} />
-        <Input
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          type="password"
-        />
-        <button type="submit"></button>
-      </form>
     </Stack>
   );
 };
