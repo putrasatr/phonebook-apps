@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { updateContact, deleteContact, resendContact } from '../actions/phonebook';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
-import '../App.css'
 
 class PhoneBookItem extends Component {
     constructor(props) {

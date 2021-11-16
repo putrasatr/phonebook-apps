@@ -1,9 +1,12 @@
 import React from "react";
 import { Box, Text, Stack, Image } from "@chakra-ui/react";
 import BannerImage from "global/img/backdrop.jpeg";
-import Register from "./Register";
+import Login from "./Login";
+// import { useSelector } from "react-redux";
 
 const Auth = () => {
+  // const data = useSelector((state) => state.user);
+  // console.log(data);
   return (
     <Stack flex="1" p="10px">
       <Box
@@ -21,22 +24,43 @@ const Auth = () => {
           borderRadius="20px"
           boxShadow="rgb(38, 57, 77) 0px 20px 30px -10px"
         />
-        <Box
-          w="100px"
-          h="100px"
-          bg="primary.main"
-          position="absolute"
-          bottom="12px"
-          right="-12px"
-          border="2px solid green"
-          borderRadius="10px"
-        ></Box>
+        <Box bottom="-20px" right="-12px" position="absolute" flex="1">
+          <Box position="relative" h="300px" w="300px">
+            <Box
+              w="150px"
+              h="150px"
+              bottom="25px"
+              right="-25px"
+              bg="tersier.main"
+              position="absolute"
+              borderRadius="10px"
+            />
+            <Box
+              w="130px"
+              h="50px"
+              bottom="0"
+              left="100px"
+              zIndex="10"
+              bg="secondary.2"
+              position="absolute"
+              borderRadius="10px"
+            />
+          </Box>
+        </Box>
       </Box>
-      <Box position="absolute" top="120px" left="120px" w="500px">
-        <Text fontSize="6pc" color="red">
-          Explore yourself
+      <Box
+        position="absolute"
+        top="250px"
+        left="120px"
+        w="500px"
+        bg="transparent.b.md"
+        p="10px"
+        borderRadius="30px"
+      >
+        <Text fontSize="6pc" color="tersier.main">
+          Join with me Miaww
         </Text>
-        <Register />
+        <Login />
       </Box>
     </Stack>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Auth from "../pages/Auth/container";
+import Register from "../pages/Auth/Register";
 import PhoneBookBox from "../components/PhoneBookBox";
 import Layout from "containers/Layouts";
 
@@ -11,8 +12,9 @@ const NotFound = () => (
 );
 
 const routers = [
-  { path: "/", Element: PhoneBookBox },
-  { path: "/welcome", Element: Auth },
+  { path: "/welcome", Element: PhoneBookBox },
+  { path: "/", Element: Auth },
+  { path: "/signup", Element: Register },
   { path: "*", Element: NotFound },
 ];
 

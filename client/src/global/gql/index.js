@@ -1,4 +1,6 @@
-export const gqlGetUser = `
+import gql from "graphql-tag";
+
+export const gqlGetUser = gql(`
 query getUser($id: String!) {
     users(id: $id) {
       id
@@ -10,9 +12,9 @@ query getUser($id: String!) {
       created_date
       token
     }
-  }`;
+  }`);
 
-export const loginMutations = `
+export const loginMutations = gql(`
   mutation loginType($email: String!, $password: String!) {
     loginType(email: $email, password: $password) {
       id
@@ -21,9 +23,9 @@ export const loginMutations = `
       error
       status
     }
-  }`;
+  }`);
 
-export const gqlRegisterUser = `
+export const gqlRegisterUser = gql(`
   mutation registerType($username: String!, $email: String!, $password: String!, $phone_number: String!) {
     registerType(username: $username, email: $email, password: $password, phone_number: $phone_number) {
       id
@@ -40,9 +42,9 @@ export const gqlRegisterUser = `
       status
     }
   }
-  `;
+  `);
 
-export const gqlLogoutType = `
+export const gqlLogoutType = gql(`
   mutation logoutType($id: String!) {
     logoutType(id: $id, ) {
       id
@@ -54,4 +56,4 @@ export const gqlLogoutType = `
       created_date
       update_date
     }
-  }`;
+  }`);

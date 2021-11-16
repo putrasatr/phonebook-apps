@@ -1,7 +1,7 @@
 import { put, call } from "redux-saga/effects";
 import { loginMutations } from "global/gql";
 import client from "actions/connect";
-import * as actions from "actions/phonebook";
+import * as actions from "store/user/action";
 
 const login = async (params) =>
   await client
@@ -14,12 +14,14 @@ const login = async (params) =>
     })
     .then((res) => res.data)
     .catch((err) => {
+      console.log(err);
       throw err;
     });
 export function* loginUser(payload) {
   try {
-    yield call(login, payload);
+    const data = yield call(login, payload);
+    yield put(actions.loginUserSuccess(data));
   } catch (error) {
-    yield put(actions.addContactFailure(0));
+    yield put(actions.loginUserFailed({ status: false }));
   }
 }

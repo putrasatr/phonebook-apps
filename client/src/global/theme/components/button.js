@@ -1,12 +1,14 @@
 const buttonStyles = {
   variants: {
     submit: (props) => ({
-      color: "red",
+      color: "white",
       paddingLeft: "10px",
-      transition: "all 0.3s ease-in-out",
+      backgroundColor: "primary.main",
+      transition: "all 0.5s ease-in-out",
       ":hover": {
-        color: "green",
-        transition: "all 0.3s ease-in-out",
+        color: "#dfdede",
+        backgroundColor: "primary.2",
+        transition: "all 0.5s ease-in-out",
       },
       ":focus": {
         boxShadow:
