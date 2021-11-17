@@ -1,14 +1,17 @@
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
+import AuthProvider from "contexts/AuthProvider";
 import Router from "./routes";
 import appTheme from "global/theme";
 
 function App() {
   return (
     <ChakraProvider theme={appTheme}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </AuthProvider>
     </ChakraProvider>
   );
 }

@@ -22,6 +22,7 @@ export const loginMutations = gql(`
       password
       error
       status
+      token
     }
   }`);
 

@@ -12,7 +12,7 @@ const login = async (params) =>
         password: params.password,
       },
     })
-    .then((res) => res.data)
+    .then((res) => res.data.loginType)
     .catch((err) => {
       console.log(err);
       throw err;

@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import { Box, Text, Container, HStack, Button } from "@chakra-ui/react";
 import useScrollWindow from "hooks/useScrollWindow";
+import { AuthContext } from "contexts/AuthProvider";
 
 const Navbar = () => {
+  const { isLogin } = useContext(AuthContext);
   const target = useRef(null);
   const pageYOffset = useScrollWindow();
   const isScroll = pageYOffset >= 67;
@@ -18,7 +20,7 @@ const Navbar = () => {
       boxShadow={isScroll ? "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;" : "none"}
       ref={target}
       color="white"
-      padding="20px 20px;"
+      padding="10px 20px;"
     >
       <Container maxW="container.lg" position="relative">
         <Text fontSize="3pc" position="absolute" top="-20px" left="-90px">
@@ -26,9 +28,20 @@ const Navbar = () => {
         </Text>
         <HStack>
           <Text>Home</Text>
-          <Text>Sign In</Text>
-          <Button variant="primary" bg="tersier.main">Sign Up</Button>
-          <Text></Text>
+          {isLogin ? (
+            <>
+              <Text>Phone</Text>
+              <Text>Post</Text>
+              <Text>Chat</Text>
+            </>
+          ) : (
+            <>
+              <Text>Sign In</Text>
+              <Button variant="primary" bg="tersier.main">
+                Sign Up
+              </Button>
+            </>
+          )}
         </HStack>
       </Container>
     </Box>

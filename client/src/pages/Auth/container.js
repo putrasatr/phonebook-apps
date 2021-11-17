@@ -5,8 +5,6 @@ import Login from "./Login";
 // import { useSelector } from "react-redux";
 
 const Auth = () => {
-  // const data = useSelector((state) => state.user);
-  // console.log(data);
   return (
     <Stack flex="1" p="10px">
       <Box
