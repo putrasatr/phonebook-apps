@@ -10,7 +10,7 @@ const Auth = () => {
   return (
     <Stack flex="1" p="10px">
       <Box
-        w="80%"
+        w="100%"
         h="700px"
         marginLeft="auto"
         mr="30px"
@@ -24,7 +24,7 @@ const Auth = () => {
           borderRadius="20px"
           boxShadow="rgb(38, 57, 77) 0px 20px 30px -10px"
         />
-        <Box bottom="-20px" right="-12px" position="absolute" flex="1">
+        <Box bottom="100px" right="-20px" position="absolute" flex="1">
           <Box position="relative" h="300px" w="300px">
             <Box
               w="150px"
@@ -51,13 +51,13 @@ const Auth = () => {
       <Box
         position="absolute"
         top="250px"
-        left="120px"
-        w="500px"
+        left="-100px"
+        w="400px"
         bg="transparent.b.md"
         p="10px"
         borderRadius="30px"
       >
-        <Text fontSize="6pc" color="tersier.main">
+        <Text fontSize="3pc" color="tersier.main">
           Join with me Miaww
         </Text>
         <Login />
