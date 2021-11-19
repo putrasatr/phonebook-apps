@@ -8,6 +8,7 @@ const user = (state = initialState, actions) => {
     //Login
     case "LOGIN_USER_SUCCESS":
       localStorage.setItem("token", data.token);
+      window.location.href = "/home";
       return {
         ...state,
         ...data,
