@@ -2,6 +2,7 @@ import React, { useRef, useContext } from "react";
 import { Box, Text, Container, HStack, Button } from "@chakra-ui/react";
 import useScrollWindow from "hooks/useScrollWindow";
 import { AuthContext } from "contexts/AuthProvider";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const { isLogin } = useContext(AuthContext);
@@ -26,17 +27,17 @@ const Navbar = () => {
         <Text fontSize="3pc" position="absolute" top="-20px" left="-90px">
           CAT
         </Text>
-        <HStack>
-          <Text>Home</Text>
+        <HStack justifyContent="right">
           {isLogin ? (
             <>
-              <Text>Phone</Text>
-              <Text>Post</Text>
-              <Text>Chat</Text>
+              <NavLink to="/home">Home</NavLink>
+              <NavLink to="/phone">Phone</NavLink>
+              <NavLink to="/post">Post</NavLink>
+              <NavLink to="/chat">Chat</NavLink>
             </>
           ) : (
             <>
-              <Text>Sign In</Text>
+              <NavLink to="/signin">Sign In</NavLink>
               <Button variant="primary" bg="tersier.main">
                 Sign Up
               </Button>

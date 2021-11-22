@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Text, Stack, Image } from "@chakra-ui/react";
 import BannerImage from "global/img/backdrop.jpeg";
 import Login from "./Login";
-// import { useSelector } from "react-redux";
 
 const Auth = () => {
   return (
@@ -60,6 +59,18 @@ const Auth = () => {
         </Text>
         <Login />
       </Box>
+      <Stack spacing="15px" color="white" w="80%">
+        <Text fontSize="35px" fontWeight="bold">
+          What is Cat ?
+        </Text>
+        <Text fontSize="15px" fontWeight="600">
+          The best chat app? Cat Miaww! Use the latest social media to
+          communicate with other users out there, Instagram stories, Facebook
+          posts, and more. Get started with Paint, resume, brochure, business
+          card, newsletter or wedding invitation share it here Miaww.
+        </Text>
+        <Box w="100px" h="10px" bg="tersier.main" />
+      </Stack>
     </Stack>
   );
 };
