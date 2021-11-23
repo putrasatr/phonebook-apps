@@ -1,10 +1,11 @@
 import React, { useRef, useContext } from "react";
-import { Box, Text, Container, HStack, Button } from "@chakra-ui/react";
+import { Box, Text, Container, HStack, Button, Select } from "@chakra-ui/react";
 import useScrollWindow from "hooks/useScrollWindow";
 import { AuthContext } from "contexts/AuthProvider";
 import { NavLink } from "react-router-dom";
+import { languageNativeNames } from "translations";
 
-const Navbar = () => {
+const Navbar = ({ handleLang, lang }) => {
   const { isLogin } = useContext(AuthContext);
   const target = useRef(null);
   const pageYOffset = useScrollWindow();
@@ -43,6 +44,14 @@ const Navbar = () => {
               </Button>
             </>
           )}
+          <Select onChange={handleLang} w="20%">
+            {/* <option disabled>{languageNativeNames[lang]}</option> */}
+            {Object.keys(languageNativeNames).map((item) => (
+              <option key={item} value={item} selected={item === lang}>
+                {languageNativeNames[item]}
+              </option>
+            ))}
+          </Select>
         </HStack>
       </Container>
     </Box>
