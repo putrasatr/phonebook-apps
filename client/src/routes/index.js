@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Auth from "../pages/Auth/container";
 import Register from "../pages/Auth/Register";
 import PhoneBookBox from "../components/PhoneBookBox";
 import Layout from "containers/Layouts";
+import { LangContext } from "contexts/LanguageProvider";
 
 const NotFound = () => (
   <div>
@@ -18,17 +19,22 @@ const routers = [
   { path: "*", Element: NotFound },
 ];
 
-const renderWithLayout = (Component) => (
-  <Layout>
-    <Component />
+const renderWithLayout = (Component, props) => (
+  <Layout lang={props.lang} setLang={props.setLang}>
+    <Component {...props} />
   </Layout>
 );
 
 const Router = () => {
+  const { lang, setLang } = useContext(LangContext);
   return (
     <Routes>
       {routers.map(({ path, Element }) => (
-        <Route key={path} path={path} element={renderWithLayout(Element)} />
+        <Route
+          key={path}
+          path={path}
+          element={renderWithLayout(Element, { lang, setLang })}
+        />
       ))}
     </Routes>
   );
