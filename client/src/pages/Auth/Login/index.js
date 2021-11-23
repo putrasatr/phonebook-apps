@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginUser } from "actions/phonebook";
 import LoadingFull from "components/LoadingFull";
+import translate from "translations";
 
-const Login = () => {
+const Login = ({ lang }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
@@ -45,7 +46,7 @@ const Login = () => {
             />
           </Box>
           <Button type="submit" variant="submit" size="lg" p="10px">
-            <Text>Login for cat</Text>
+            <Text>{translate[lang]["Auth.Login.button"]}</Text>
           </Button>
           <Link to={"/signup"}>
             <Text>Create Account? Register here</Text>

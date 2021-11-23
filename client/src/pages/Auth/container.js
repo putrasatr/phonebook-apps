@@ -2,8 +2,9 @@ import React from "react";
 import { Box, Text, Stack, Image } from "@chakra-ui/react";
 import BannerImage from "global/img/backdrop.jpeg";
 import Login from "./Login";
+import translate from "translations";
 
-const Auth = () => {
+const Auth = ({ lang }) => {
   return (
     <Stack flex="1" p="10px">
       <Box
@@ -55,22 +56,26 @@ const Auth = () => {
         borderRadius="30px"
       >
         <Text fontSize="3pc" color="tersier.main">
-          Join with me Miaww
+          {translate[lang]["Auth.Login.title"]}
         </Text>
-        <Login />
+        <Login lang={lang} />
       </Box>
-      <Stack spacing="15px" color="white" w="80%">
+      <Stack spacing="15px" color="white" w="80%" mb="20px">
         <Text fontSize="35px" fontWeight="bold">
-          What is Cat ?
+          {translate[lang]["WhatIsCat"]}
         </Text>
         <Text fontSize="15px" fontWeight="600">
-          The best chat app? Cat Miaww! Use the latest social media to
-          communicate with other users out there, Instagram stories, Facebook
-          posts, and more. Get started with Paint, resume, brochure, business
-          card, newsletter or wedding invitation share it here Miaww.
+          {translate[lang]["Auth.containers.WhatIsCat"]}
         </Text>
         <Box w="100px" h="10px" bg="tersier.main" />
       </Stack>
+      <Box
+        bg="white"
+        borderRadius="20px"
+        w="100%"
+        h="400px"
+        boxShadow="rgb(38, 57, 77) 0px 10px 30px -10px"
+      ></Box>
     </Stack>
   );
 };
