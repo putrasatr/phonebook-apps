@@ -3,7 +3,7 @@ import { Box, Text, Container, HStack, Button, Select } from "@chakra-ui/react";
 import useScrollWindow from "hooks/useScrollWindow";
 import { AuthContext } from "contexts/AuthProvider";
 import { NavLink } from "react-router-dom";
-import { languageNativeNames } from "translations";
+import translate, { languageNativeNames } from "translations";
 
 const Navbar = ({ handleLang, lang }) => {
   const { isLogin } = useContext(AuthContext);
@@ -31,16 +31,26 @@ const Navbar = ({ handleLang, lang }) => {
         <HStack justifyContent="right">
           {isLogin ? (
             <>
-              <NavLink to="/home">Home</NavLink>
-              <NavLink to="/phone">Phone</NavLink>
-              <NavLink to="/post">Post</NavLink>
-              <NavLink to="/chat">Chat</NavLink>
+              <NavLink to="/home">
+                {translate[lang]["Navbar.link"].Home}
+              </NavLink>
+              <NavLink to="/phone">
+                {translate[lang]["Navbar.link"].Phone}
+              </NavLink>
+              <NavLink to="/post">
+                {translate[lang]["Navbar.link"].Post}
+              </NavLink>
+              <NavLink to="/chat">
+                {translate[lang]["Navbar.link"].Chat}
+              </NavLink>
             </>
           ) : (
             <>
-              <NavLink to="/signin">Sign In</NavLink>
+              <NavLink to="/signin">
+                {translate[lang]["Navbar.link"].SignIn}
+              </NavLink>
               <Button variant="primary" bg="tersier.main">
-                Sign Up
+                {translate[lang]["Navbar.link"].SignUp}
               </Button>
             </>
           )}

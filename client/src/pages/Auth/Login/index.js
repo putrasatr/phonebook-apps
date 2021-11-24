@@ -24,32 +24,34 @@ const Login = ({ lang }) => {
         <Stack spacing="20px">
           <Box>
             <Text my="10px" color="white">
-              Your email address
+              {translate[lang]["Auth.Login.form.email"].label}
             </Text>
             <Input
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               variant="secondary"
-              placeholder="Please input your email Miaww!!"
+              placeholder={translate[lang]["Auth.Login.form.email"].placeholder}
             />
           </Box>
           <Box>
             <Text my="10px" color="white">
-              Your password
+              {translate[lang]["Auth.Login.form.password"].label}
             </Text>
             <Input
               type="password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               variant="secondary"
-              placeholder="Please input your password Miaww!!"
+              placeholder={
+                translate[lang]["Auth.Login.form.password"].placeholder
+              }
             />
           </Box>
           <Button type="submit" variant="submit" size="lg" p="10px">
             <Text>{translate[lang]["Auth.Login.button"]}</Text>
           </Button>
           <Link to={"/signup"}>
-            <Text>Create Account? Register here</Text>
+            <Text>{translate[lang]["Auth.Login.createaccount"]}</Text>
           </Link>
         </Stack>
       </form>
