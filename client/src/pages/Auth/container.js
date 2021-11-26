@@ -1,10 +1,23 @@
 import React from "react";
-import { Box, Text, Stack, Image } from "@chakra-ui/react";
+import { Box, Text, Stack, Image, Flex } from "@chakra-ui/react";
 import BannerImage from "global/img/backdrop.jpeg";
 import Login from "./Login";
 import translate from "translations";
+import { Slide } from "react-slideshow-image";
+import styled from "styled-components";
+import item from "global/img/backdrop.jpeg";
+import "react-slideshow-image/dist/styles.css";
 
 const Auth = ({ lang }) => {
+  const fadeProperties = {
+    duration: 3000,
+    pauseOnHover: true,
+    easing: "ease",
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    canSwipe: false,
+  };
+
   return (
     <Stack flex="1" p="10px">
       <Box
@@ -75,8 +88,48 @@ const Auth = ({ lang }) => {
         w="100%"
         h="400px"
         boxShadow="rgb(38, 57, 77) 0px 10px 30px -10px"
-      ></Box>
+      >
+        <StyleDiv>
+          <Slide {...fadeProperties}>
+            {new Array(5).fill(5).map((ite, i) => (
+              <Flex
+                bg="black"
+                w="100%"
+                key={i}
+                h="400px"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Image
+                  src={item}
+                  userSelect="none"
+                  maxW="100%"
+                  maxHeight="60vh"
+                />
+              </Flex>
+            ))}
+          </Slide>
+        </StyleDiv>
+      </Box>
     </Stack>
   );
 };
+
+const StyleDiv = styled.div`
+  .each-slide > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 350px;
+  }
+
+  .each-slide span {
+    padding: 20px;
+    font-size: 20px;
+    background: #efefef;
+    text-align: center;
+  }
+`;
+
 export default Auth;

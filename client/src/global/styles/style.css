@@ -5,3 +5,6 @@
 .left-foot {
   transform: rotate(-10deg);
 }
+.slide-image {
+  background-image: url("../img/backdrop.jpeg");
+}

@@ -54,10 +54,9 @@ const Navbar = ({ handleLang, lang }) => {
               </Button>
             </>
           )}
-          <Select onChange={handleLang} w="20%">
-            {/* <option disabled>{languageNativeNames[lang]}</option> */}
+          <Select onChange={handleLang} w="20%" defaultValue={lang}>
             {Object.keys(languageNativeNames).map((item) => (
-              <option key={item} value={item} selected={item === lang}>
+              <option key={item} value={item}>
                 {languageNativeNames[item]}
               </option>
             ))}
