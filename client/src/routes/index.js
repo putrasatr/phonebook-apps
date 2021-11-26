@@ -5,10 +5,11 @@ import Register from "../pages/Auth/Register";
 import PhoneBookBox from "../components/PhoneBookBox";
 import Layout from "containers/Layouts";
 import { LangContext } from "contexts/LanguageProvider";
+import translate from "translations";
 
-const NotFound = () => (
+const NotFound = ({ lang }) => (
   <div>
-    <p>There's nothing here!</p>
+    <p style={{ color: "white" }}>{translate[lang]["Router.Notfound"]}</p>
   </div>
 );
 

@@ -1,4 +1,7 @@
 .right-foot {
   -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+  transform: rotate(-20deg) scaleX(-1);
+}
+.left-foot {
+  transform: rotate(-10deg);
 }

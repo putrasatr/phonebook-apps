@@ -51,7 +51,7 @@ const Login = ({ lang }) => {
             <Text>{translate[lang]["Auth.Login.button"]}</Text>
           </Button>
           <Link to={"/signup"}>
-            <Text>{translate[lang]["Auth.Login.createaccount"]}</Text>
+            <Text color="inherit">{translate[lang]["Auth.Login.createaccount"]}</Text>
           </Link>
         </Stack>
       </form>

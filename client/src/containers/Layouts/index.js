@@ -3,17 +3,20 @@ import { Stack, Container, Center, Text } from "@chakra-ui/react";
 import Navbar from "containers/Navbar";
 import translate from "translations";
 import { langTokens } from "utils/tokens";
+import { useDispatch } from "react-redux";
+import { setLangAction } from "store/misc/action";
 
 const Layout = ({ children, lang, setLang }) => {
+  const dispatch = useDispatch();
   const handleLang = useCallback(
     (e) => {
       const value = e.target.value;
       if (value in translate) {
         setLang(value);
-        localStorage.setItem("lang", langTokens[lang]);
+        dispatch(setLangAction(langTokens[value]));
       }
     },
-    [setLang, lang]
+    [dispatch, setLang]
   );
   return (
     <Stack bg="primary.main" w="100%" spacing="0">

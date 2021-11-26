@@ -5,7 +5,7 @@ import { CatFeets } from "global/icons";
 export default function LoadingFull({ show }) {
   const [isRightFoot, setIsRightFoot] = useState(false);
   useEffect(() => {
-    setTimeout(() => setIsRightFoot((prev) => !prev), 1500);
+    setTimeout(() => setIsRightFoot((prev) => !prev), 1200);
     return () => clearTimeout();
   }, [isRightFoot]);
   if (show)
@@ -27,7 +27,7 @@ export default function LoadingFull({ show }) {
             as={CatFeets}
             fontSize="100px"
             color="white"
-            className={isRightFoot ? "right-foot" : "left-foot"}
+            className={`crook ${isRightFoot ? "right-foot" : "left-foot"}`}
           />
         </Center>
       </Portal>
