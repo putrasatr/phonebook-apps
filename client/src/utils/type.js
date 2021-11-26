@@ -1,0 +1,3 @@
+export const SET_LANG = "SET_LANG";
+export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
+export const LOGIN_USER_FAILED = "LOGIN_USER_FAILED";
