@@ -13,8 +13,8 @@ const Auth = ({ lang }) => {
     duration: 3000,
     pauseOnHover: true,
     easing: "ease",
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     canSwipe: false,
   };
 

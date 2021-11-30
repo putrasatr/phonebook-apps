@@ -1,6 +1,5 @@
 import React from "react";
 import { Input, Button, Stack, Text, Box } from "@chakra-ui/react";
-// import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { loginUser } from "actions/phonebook";
 
@@ -12,7 +11,6 @@ const Register = () => {
     e.preventDefault();
     dispatch(loginUser(email, password));
   };
-  console.log("render");
   return (
     <form onSubmit={onSubmit}>
       <Stack spacing="20px">
