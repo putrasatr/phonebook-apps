@@ -1,34 +1,38 @@
 import React from "react";
 import { Input, Button, Stack, Text, Box } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginUser } from "actions/phonebook";
 import LoadingFull from "components/LoadingFull";
 import translate from "translations";
+import { useForm } from "react-hook-form";
 
 const Login = ({ lang }) => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { user } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = ({ email, password }) => {
     setIsLoading(true);
     dispatch(loginUser(email, password));
     setTimeout(() => setIsLoading(false), 3000);
   };
   return (
     <>
-      <LoadingFull show={isLoading} />
-      <form onSubmit={onSubmit}>
+      <LoadingFull show={isLoading} isInvalid={errors} />
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing="20px">
+          <Text color="red">{user?.error}</Text>
           <Box>
             <Text my="10px" color="white">
               {translate[lang]["Auth.Login.form.email"].label}
             </Text>
             <Input
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              {...register("email")}
               variant="secondary"
               placeholder={translate[lang]["Auth.Login.form.email"].placeholder}
             />
@@ -39,8 +43,7 @@ const Login = ({ lang }) => {
             </Text>
             <Input
               type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
+              {...register("password")}
               variant="secondary"
               placeholder={
                 translate[lang]["Auth.Login.form.password"].placeholder
@@ -51,7 +54,9 @@ const Login = ({ lang }) => {
             <Text>{translate[lang]["Auth.Login.button"]}</Text>
           </Button>
           <Link to={"/signup"}>
-            <Text color="inherit">{translate[lang]["Auth.Login.createaccount"]}</Text>
+            <Text color="inherit">
+              {translate[lang]["Auth.Login.createaccount"]}
+            </Text>
           </Link>
         </Stack>
       </form>

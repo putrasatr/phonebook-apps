@@ -1,6 +1,7 @@
 const initialState = {
   id: null,
   status: false,
+  message: "",
 };
 const user = (state = initialState, actions) => {
   const { type, data } = actions;
@@ -9,6 +10,7 @@ const user = (state = initialState, actions) => {
     case "LOGIN_USER_SUCCESS":
       if (data.status) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("isLogin", true);
         window.location.href = "/home";
       }
       return {
@@ -16,7 +18,6 @@ const user = (state = initialState, actions) => {
         ...data,
       };
     case "LOGIN_USER_FAILED":
-      console.log(false, data);
       return {
         ...state,
         ...data,
