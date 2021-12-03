@@ -7,13 +7,16 @@ const user = (state = initialState, actions) => {
   switch (type) {
     //Login
     case "LOGIN_USER_SUCCESS":
-      localStorage.setItem("token", data.token);
-      window.location.href = "/home";
+      if (data.status) {
+        localStorage.setItem("token", data.token);
+        window.location.href = "/home";
+      }
       return {
         ...state,
         ...data,
       };
     case "LOGIN_USER_FAILED":
+      console.log(false, data);
       return {
         ...state,
         ...data,
