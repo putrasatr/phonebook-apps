@@ -1,22 +1,7 @@
 import { put, call } from "redux-saga/effects";
-import { loginMutations } from "global/gql";
-import client from "actions/connect";
+import { login } from "network/lib/user";
 import * as actions from "store/user/action";
 
-const login = async (params) =>
-  await client
-    .mutate({
-      mutation: loginMutations,
-      variables: {
-        email: params.email,
-        password: params.password,
-      },
-    })
-    .then((res) => res.data.loginType)
-    .catch((err) => {
-      console.log(err);
-      throw err;
-    });
 export function* loginUser(payload) {
   try {
     const data = yield call(login, payload);
