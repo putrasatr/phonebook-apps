@@ -9,7 +9,7 @@ import rootReducer from 'store';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from './sagas/phonebooks';
+import rootSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = compose(applyMiddleware(sagaMiddleware));
