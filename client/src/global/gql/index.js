@@ -58,3 +58,36 @@ export const gqlLogoutType = gql(`
       update_date
     }
   }`);
+export const gqlGetPhonebook = gql`
+  query (
+    $offset: Int!
+    $limit: Int!
+    $searchName: String!
+    $searchPhone: String!
+  ) {
+    phonebooks(
+      pagination: {
+        offset: $offset
+        limit: $limit
+        searchName: $searchName
+        searchPhone: $searchPhone
+      }
+    ) {
+      items {
+        id
+        name
+        phone
+      }
+      count
+    }
+  }
+`;
+export const addQuery = gql(`
+  mutation addContact($_id: ID!, $name: String!, $phone: String!) {
+    addContact(id: $_id, name: $name, phone: $phone) {
+      id
+      name
+      phone
+    }
+  }
+`);
