@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Auth from "../pages/Auth/container";
+import Home from "pages/Home";
 import Register from "../pages/Auth/Register";
 import PhoneBookBox from "../components/PhoneBookBox";
 import Layout from "containers/Layouts";
@@ -16,12 +17,13 @@ const NotFound = ({ lang }) => (
 const routers = [
   { path: "/welcome", Element: PhoneBookBox },
   { path: "/", Element: Auth },
+  { path: "/home", Element: Home },
   { path: "/signup", Element: Register },
   { path: "*", Element: NotFound },
 ];
 
 const renderWithLayout = (Component, props) => (
-  <Layout lang={props.lang} setLang={props.setLang}>
+  <Layout {...props}>
     <Component {...props} />
   </Layout>
 );
