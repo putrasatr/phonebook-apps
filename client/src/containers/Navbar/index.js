@@ -8,7 +8,7 @@ import translate, { languageNativeNames } from "translations";
 const Navbar = ({ handleLang, lang }) => {
   const { isLogin } = useContext(AuthContext);
   const target = useRef(null);
-  const pageYOffset = useScrollWindow();
+  const { pageYOffset } = useScrollWindow();
   const isScroll = pageYOffset >= 67;
   return (
     <Box
