@@ -1,0 +1,13 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.box {
+  height: 10rem;
+  width: 30rem;
+  background-color: dodgerblue;
+  margin: 20px;
+}
+.red {
+  background: red !important;
+}
