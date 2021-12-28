@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Auth from "../pages/Auth/container";
 import Home from "pages/Home";
+import Testing from "pages/Testing";
 import Register from "../pages/Auth/Register";
 import PhoneBookBox from "../components/PhoneBookBox";
 import Layout from "containers/Layouts";
@@ -19,6 +20,7 @@ const routers = [
   { path: "/", Element: Auth },
   { path: "/home", Element: Home },
   { path: "/signup", Element: Register },
+  { path: "/testing", Element: Testing },
   { path: "*", Element: NotFound },
 ];
 
