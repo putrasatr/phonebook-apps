@@ -12,8 +12,12 @@ firebase.initializeApp(dbConfig);
 const indexRouter = require("./routes/index");
 const { phonebookSchema } = require("./graphql");
 const { appSchema } = require("./graphqlNew");
+const apiRouter = require("./routes/api");
 
 const app = express();
+
+app.set('views', path.join(__dirname, 'views/pages'));
+app.set('view engine', 'ejs');
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -23,6 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", indexRouter);
+app.use("/api", apiRouter);
 
 app.use(
   "/graphql",
