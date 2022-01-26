@@ -6,12 +6,8 @@ import Reguler from "./reguler";
 export default function App() {
   return (
     <>
-      <Card>
-        <Reguler />
-      </Card>
-      <Card>
-        <AsyncForm />
-      </Card>
+      <Card children={<Reguler />} />
+      <Card children={<AsyncForm />} />
     </>
   );
 }

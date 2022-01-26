@@ -5,8 +5,9 @@ import translate from "translations";
 import { langTokens } from "utils/tokens";
 import { useDispatch } from "react-redux";
 import { setLangAction } from "store/misc/action";
+import Sidebar from "containers/Layouts/sidebar";
 
-const Layout = ({ children, lang, setLang }) => {
+const Layout = ({ children, lang, setLang, isUsingSidebar }) => {
   const dispatch = useDispatch();
   const handleLang = useCallback(
     (e) => {
@@ -21,6 +22,7 @@ const Layout = ({ children, lang, setLang }) => {
   return (
     <Stack bg="primary.main" w="100%" spacing="0">
       <Navbar handleLang={handleLang} lang={lang} />
+      {isUsingSidebar && <Sidebar lang={lang} />}
       <Center flex="1" overflow="hidden" mt="0">
         <Container maxW="container.lg" position="relative" mt="0">
           {children}

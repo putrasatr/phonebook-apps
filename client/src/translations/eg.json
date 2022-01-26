@@ -20,6 +20,23 @@
     "SignUp": "Sign Up"
   },
   "Layout.footer.cookies": "By visiting this website you agree to the Cookies policy",
+  "Layout.sidebar": {
+    "section-1": "Appearance",
+    "list": [
+      {
+        "title": "Box",
+        "count": 4
+      },
+      {
+        "title": "Row",
+        "count": 1
+      },
+      {
+        "title": "Font",
+        "count": 2
+      }
+    ]
+  },
   "Router.Notfound": "There's nothing here!",
   "WhatIsCat": "What Is Cat ?"
 }

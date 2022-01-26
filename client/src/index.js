@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'font-awesome/css/font-awesome.min.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.min.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-import rootReducer from 'store';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux';
-import createSagaMiddleware from 'redux-saga';
-import rootSaga from './sagas';
+import rootReducer from "store";
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = compose(applyMiddleware(sagaMiddleware));
@@ -17,11 +17,16 @@ const store = createStore(rootReducer, enhancer);
 
 sagaMiddleware.run(rootSaga);
 
+// if (process.env.NODE_ENV === "development") {
+//   const { worker } = require("./mocks/browser");
+//   worker.start();
+// }
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 // ReactDOM.render(
 //       <App />,

@@ -20,6 +20,23 @@
     "SignUp": "リスト"
   },
   "Layout.footer.cookies": "このウェブサイトにアクセスすると、Cookieポリシーに同意したことになります",
+  "Layout.sidebar": {
+    "section-1": "外観",
+    "list": [
+      {
+        "title": "箱",
+        "count": 4
+      },
+      {
+        "title": "ライン",
+        "count": 1
+      },
+      {
+        "title": "書き込み",
+        "count": 2
+      }
+    ]
+  },
   "Router.Notfound": "ここには何もありません!",
   "WhatIsCat": "ペイントとは ?"
 }

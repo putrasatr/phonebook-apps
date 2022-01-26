@@ -1,7 +1,7 @@
 {
   "Auth.containers.WhatIsCat": "Aplikasi obrolan terbaik? Kucing Miaw! Gunakan media sosial terbaru untuk berkomunikasi dengan pengguna lain di luar sana, cerita Instagram, posting Facebook, dan banyak lagi. Mulailah dengan Paint, resume, brosur, kartu nama, buletin, atau undangan pernikahan, bagikan di sini Miaww.",
   "Auth.Login.button": "Masuk untuk mulai",
-  "Auth.Login.createaccount":"Buat Akun ? Daftar disini",
+  "Auth.Login.createaccount": "Buat Akun ? Daftar disini",
   "Auth.Login.form.email": {
     "label": "Alamat email",
     "placeholder": "Silahkan masukan alamat email Miaww!!"
@@ -20,6 +20,23 @@
     "SignUp": "Daftar"
   },
   "Layout.footer.cookies": "Dengan mengunjungi website ini anda menyutujui kebijakan Cookies",
+  "Layout.sidebar": {
+    "section-1": "Tampilan",
+    "list": [
+      {
+        "title": "Kotak",
+        "count": 4
+      },
+      {
+        "title": "Baris",
+        "count": 1
+      },
+      {
+        "title": "Tulisan",
+        "count": 2
+      }
+    ]
+  },
   "Router.Notfound": "Tidak ada apa apa disini",
   "WhatIsCat": "Apa Itu Cat ?"
 }

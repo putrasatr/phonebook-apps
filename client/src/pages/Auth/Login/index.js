@@ -44,6 +44,7 @@ const Login = ({ lang }) => {
             <Input
               type="password"
               {...register("password")}
+              autoComplete="false"
               variant="secondary"
               placeholder={
                 translate[lang]["Auth.Login.form.password"].placeholder

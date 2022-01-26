@@ -1,7 +1,8 @@
-const { SET_LANG } = require("utils/type");
+const { SET_LANG, SET_POST_COULUMN_COUNT } = require("utils/type");
 
 const initialState = {
   lang: "eg",
+  count: 4,
 };
 
 const misc = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const misc = (state = initialState, action) => {
     case SET_LANG:
       localStorage.setItem("lang", action.langToken);
       return state;
+    case SET_POST_COULUMN_COUNT:
+      return {
+        ...state,
+        count: action.count,
+      };
     default:
       return state;
   }

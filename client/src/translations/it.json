@@ -20,6 +20,23 @@
     "SignUp": "Iscriviti"
   },
   "Layout.footer.cookies": "Visitando questo sito accetti la Cookie policy",
+  "Layout.sidebar": {
+    "section-1": "Aspetto esteriore",
+    "list": [
+      {
+        "title": "Scatola",
+        "count": 4
+      },
+      {
+        "title": "Linea",
+        "count": 1
+      },
+      {
+        "title": "Scrivere",
+        "count": 2
+      }
+    ]
+  },
   "Router.Notfound": "non c'è niente qui!",
   "WhatIsCat": "Cos'è la vernice ?"
 }
