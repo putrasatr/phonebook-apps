@@ -1,5 +1,6 @@
 import { Box, Stack, Text } from "@chakra-ui/react";
-import React, { useEffect, useMemo } from "react";
+import { getPost } from "network/lib/post";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Post() {
@@ -20,6 +21,12 @@ export default function Post() {
       </Box>
     );
   }, [count]);
+  const [data, setData] = useState([]);
+  const fetcher = getPost().then((res) => setData(res.data));
+  console.log(data);
+  useEffect(() => {
+    fetcher();
+  }, [fetcher]);
   useEffect(() => {
     document.scrollingElement.scrollTop = 0;
   }, [count]);
